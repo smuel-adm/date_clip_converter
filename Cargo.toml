@@ -1,0 +1,12 @@
+[package]
+name = "date_clip_converter"
+version = "0.1.0"
+#edition = "2021"
+edition = "2024"
+
+[dependencies]
+clipboard = "0.5"
+device_query = "4"
+regex = "1"
+argh = "0.1"
+winapi = { version = "0.3", features = ["winuser"] }
