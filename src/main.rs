@@ -65,6 +65,9 @@ fn process_clipboard(debug: bool) -> Result<(), Box<dyn std::error::Error>> {
         ctx.set_contents(converted.to_string())?;
     } else if debug {
         println!("No valid DD/MM/YYYY dates found in clipboard.");
+        if debug {
+            println!("{:?}", &content);
+        }
     }
 
     Ok(())
