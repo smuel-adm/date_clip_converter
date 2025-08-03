@@ -25,7 +25,10 @@ fn main() {
     loop {
         let keys = device_state.get_keys();
         if keys.contains(&Keycode::LControl)
-            && keys.contains(&Keycode::LShift) && keys.contains(&Keycode::Y) && prev_pressed != keys {
+            && keys.contains(&Keycode::LShift)
+            && keys.contains(&Keycode::Y)
+            && prev_pressed != keys
+        {
             match process_clipboard(debug) {
                 Ok(_) => {}
                 Err(e) => eprintln!("Error: {}", e),
@@ -40,7 +43,7 @@ fn process_clipboard(debug: bool) -> Result<(), Box<dyn std::error::Error>> {
     let mut ctx: ClipboardContext = ClipboardProvider::new()?;
     let content = ctx.get_contents()?;
 
-    let date_re = Regex::new(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b")?;
+    let date_re = Regex::new(r"\b(\d{1,2})/(\d{1,2})/(\d{2,4})\b")?;
     let mut has_match = false;
 
     let converted = date_re.replace_all(&content, |caps: &regex::Captures| {
